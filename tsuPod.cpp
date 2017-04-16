@@ -205,10 +205,10 @@ void TsuPod::sortList()
 	//Pointers initialized
 	songNode * nodePtr, * newNode, * temp, * nPtr, * previousNode, * tptr;
 	temp = NULL;
-	
+	bool found = false;
 	//Temperary song variable then pointer moved to next node
-	Song tempSong = nodePtr -> s;
-	nodePtr = nodePtr -> next;
+	Song mySong = nodePtr -> s;
+//	nodePtr = nodePtr -> next;
 
 	//While there are still songs in playlist
 	while(head != NULL)
@@ -221,22 +221,41 @@ void TsuPod::sortList()
 		nPtr = head;
 		previousNode = NULL;
 
-		while(nPtr != NULL)	
+		while(found != true)
 		{
-			if(nPtr -> s == tempSong)
-			{
-				if(previousNode == NULL)
-					head = nPtr -> next;
-				else
-					previousNode -> next = nPtr -> next;
-				delete nPtr;
-			}
-		
-			previousNode = nPtr;
-			nPtr = nPtr -> next;
-		}
+			//Check for empty list
+			if(head == NULL)
+				cout << "Error: empty list." << endl;
 	
+			//If head is the song
+			else if(head -> s == mySong)
+			{
+				nodePtr = head -> next;
+				delete head;
+				head = nodePtr;
+				found = true;
+			}	
+	
+			else
+			{
+				nodePtr = head;
+			
+				//Traverse through playlist
+				while(nodePtr != NULL && nodePtr -> s != mySong)
+				{
+					previousNode = nodePtr;
+					nodePtr = nodePtr -> next;
+				}
 		
+				if(nodePtr != NULL)
+				{
+					previousNode -> next = nodePtr -> next;
+					delete nodePtr;
+					found = true;
+				}
+			}
+		}	
+
 		if(temp == NULL)
 			temp = newNode;
 
