@@ -97,47 +97,55 @@ int TsuPod::removeSong(Song mySong)
 	songNode * previousNode = NULL;
 	songNode * nodePtr = head;
 
-	//Check for empty list
-	if(head == NULL)
+	while(found != true)
 	{
-		cout << "Error: empty list." << endl;
-		return -1;
+		//Check for empty list
+		if(head == NULL)
+		{
+			cout << "Error: empty list." << endl;
+			return -1;
+		}
+
+		//If head is the song
+		else if(head -> s == mySong)
+		{
+			nodePtr = head -> next;
+			delete head;
+			head = nodePtr;
+			found = true;
+		}	
+	
+		else
+		{
+			nodePtr = head;
+		
+			//Traverse through playlist
+			while(nodePtr != NULL && nodePtr -> s != mySong)
+			{
+				previousNode = nodePtr;
+				nodePtr = nodePtr -> next;
+			}
+		
+			if(nodePtr != NULL)
+			{
+				previousNode -> next = nodePtr -> next;
+				delete nodePtr;
+				found = true;
+			}
+		}
+	
+	}
+	
+	//Update consumed song count and memory
+	if(found)
+	{
+		csongs--;
+		cmem = cmem - mySong.getSize();
 	}
 
-	//If head is the song
-	else if(head -> s == mySong)
-	{
-		nodePtr = head -> next;
-		delete head;
-		head = nodePtr;
-	}	
-	
-	else
-	{
-		nodePtr = head;
-		
-		//Traverse through playlist
-		while(nodePtr != NULL && nodePtr -> s != mySong)
-		{
-			previousNode = nodePtr;
-			nodePtr = nodePtr -> next;
-		}
-		
-		if(nodePtr != NULL)
-		{
-			previousNode -> next = nodePtr -> next;
-			delete nodePtr;
-		}
-	}
+
 	return 0;
 }
-
-
-
-
-
-
-
 
 //Show the contents of the song list
 void TsuPod::showList()
@@ -165,10 +173,83 @@ void TsuPod::showList()
 	cout << endl;
 }
 
+//Function to find the lowest song in playlist
+Song TsuPod::findLowest()
+{
+	//Pointer to traverse through list
+	songNode * nodePtr = head;
+	
+	//Temperary song for sorting
+	Song tempSong = nodePtr -> s;
 
+	//Move positions in list
+	nodePtr = nodePtr -> next;
+	
+	//While still songs
+	while(nodePtr != NULL)
+	{
+		//Find lowest alphabetic song
+		if(nodePtr -> s < tempSong)
+			tempSong = nodePtr -> s;
 
+		//Traverse a node
+		nodePtr = nodePtr -> next;
+	}
 
+	return tempSong;
+}
 
+//Function to sort the playlist
+void TsuPod::sortList()
+{
+	//Pointers initialized
+	songNode * nodePtr, * newNode, * temp, * nPtr, * previousNode, * tptr;
+	temp = NULL;
+	
+	//Temperary song variable then pointer moved to next node
+	Song tempSong = nodePtr -> s;
+	nodePtr = nodePtr -> next;
+
+	//While there are still songs in playlist
+	while(head != NULL)
+	{
+		//Create and initialize a new song node
+		newNode = new songNode;
+		newNode -> s = findLowest();
+		newNode -> next = NULL;
+
+		nPtr = head;
+		previousNode = NULL;
+
+		while(nPtr != NULL)	
+		{
+			if(nPtr -> s == tempSong)
+			{
+				if(previousNode == NULL)
+					head = nPtr -> next;
+				else
+					previousNode -> next = nPtr -> next;
+				delete nPtr;
+			}
+		
+			previousNode = nPtr;
+			nPtr = nPtr -> next;
+		}
+	
+		
+		if(temp == NULL)
+			temp = newNode;
+
+		else
+		{
+			tptr = temp;
+			while(tptr -> next)
+				tptr = tptr -> next;
+			tptr -> next = newNode;
+		}
+	}
+	head = temp;
+}
 
 //Get the total memory of the tsuPod
 int TsuPod::getTotalMem() {return totMem;}

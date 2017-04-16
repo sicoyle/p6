@@ -31,12 +31,10 @@ class TsuPod
 		int addSong(Song);
 		int removeSong(Song);
 		void showList();
+		Song findLowest();
 		void sortList();
 		void shuffle();
 		void clearList();
 		int getTotalMem();
 		int getRemainingMem();
-
-		//DELETE!!!
-		Song searchLeast();
 };
