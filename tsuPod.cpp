@@ -93,11 +93,9 @@ int TsuPod::removeSong(Song mySong)
 	bool found = false;
 	
 	//Pointer for traversal and previous node
-	songNode * previousNode, * nodePtr;
-
 	//Initialize pointers
-	* previousNode = NULL;
-	* nodePtr = head;
+	songNode * previousNode = NULL;
+	songNode * nodePtr = head;
 
 	//Check for empty list
 	if(head == NULL)
@@ -106,13 +104,32 @@ int TsuPod::removeSong(Song mySong)
 		return -1;
 	}
 
+	//If head is the song
+	else if(head -> s == mySong)
+	{
+		nodePtr = head -> next;
+		delete head;
+		head = nodePtr;
+	}	
 	
-	
-
-
-
-
-
+	else
+	{
+		nodePtr = head;
+		
+		//Traverse through playlist
+		while(nodePtr != NULL && nodePtr -> s != mySong)
+		{
+			previousNode = nodePtr;
+			nodePtr = nodePtr -> next;
+		}
+		
+		if(nodePtr != NULL)
+		{
+			previousNode -> next = nodePtr -> next;
+			delete nodePtr;
+		}
+	}*/
+	return 0;
 }
 
 
@@ -145,6 +162,7 @@ void TsuPod::showList()
 
 		nodePtr = nodePtr -> next;
 	}
+	cout << endl;
 }
 
 
