@@ -27,11 +27,29 @@ int main()
 		cout << "Add song return code: " << retCode << endl;
 
 
+
+	Song mySong3("Paris", "Chain Smokers", 3);
+	retCode = myPod.addSong(mySong3);
+		cout << "Add song return code: " << retCode << endl;
+
+	Song mySong4("Issues", "Julia Michaels", 4);
+	retCode = myPod.addSong(mySong4);
+		cout << "Add song return code: " << retCode << endl;
+
+	Song mySong5("Starboy", "The Weeknd", 5);
+	retCode = myPod.addSong(mySong5);
+		cout << "Add song return code: " << retCode << endl;
+
+	cout << "Playlist with songs added:" << endl;
 	myPod.showList();
 
-/*
-	myPod.addSong("Paris", "Chain Smokers", 3);
-	myPod.addSong("Issues", "Julia Michaels", 4);
-	myPod.addSong("Starboy", "The Weeknd", 5);
-*/
+	retCode = myPod.removeSong(mySong1);
+		cout << "Remove song return code: " << retCode << endl;
+
+	retCode = myPod.removeSong(mySong4);
+		cout << "Remove song return code: " << retCode << endl;
+
+	cout << "Playlist with song(s) removed:" << endl;
+	myPod.showList();
+
 }

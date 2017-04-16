@@ -39,5 +39,4 @@ class TsuPod
 
 		//DELETE!!!
 		Song searchLeast();
-		bool remove(Song);
 };

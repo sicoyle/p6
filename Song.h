@@ -35,6 +35,7 @@ class Song
 		void setSize(int s) {size = s;}
 
 		//Overload
+		bool operator != (const Song &);
 		bool operator == (const Song &);
 		bool operator > (const Song &);
 		bool operator < (const Song &);

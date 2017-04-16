@@ -26,6 +26,15 @@ Song::Song(string t, string a, int s)
 	setSize(s);
 }
 
+//Operator to check for unequal songs
+bool Song::operator != (const Song & rs)
+{
+	if((title == rs.title) && (artist == rs.artist) && (size == rs.size))
+		return false;
+	else
+		return true;
+}
+
 //Operator to check for equal songs
 bool Song::operator == (const Song & rs)
 {

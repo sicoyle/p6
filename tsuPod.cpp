@@ -128,7 +128,7 @@ int TsuPod::removeSong(Song mySong)
 			previousNode -> next = nodePtr -> next;
 			delete nodePtr;
 		}
-	}*/
+	}
 	return 0;
 }
 
