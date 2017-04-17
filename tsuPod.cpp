@@ -2,7 +2,7 @@
 Name: Samantha Coyle
 Date: 4/18/2017
 Problem Number: 6
-Hours spent solving the problem: 
+Hours spent solving the problem:6 
 Instructor: Komogortsev, TSU
 *****************************************************/
 #include <iostream>
@@ -171,6 +171,8 @@ void TsuPod::showList()
 		nodePtr = nodePtr -> next;
 	}
 	cout << endl;
+
+	cout << "csongs: " << csongs << endl;
 }
 
 //Function to find the lowest song in playlist
@@ -183,7 +185,7 @@ Song TsuPod::findLowest()
 	Song tempSong = nodePtr -> s;
 
 	//Move positions in list
-	nodePtr = nodePtr -> next;
+	//nodePtr = nodePtr -> next;
 	
 	//While still songs
 	while(nodePtr != NULL)
@@ -202,25 +204,27 @@ Song TsuPod::findLowest()
 //Function to sort the playlist
 void TsuPod::sortList()
 {
-	//Pointers initialized
 	songNode * nodePtr, * newNode, * temp, * nPtr, * previousNode, * tptr;
 	temp = NULL;
 	bool found = false;
+cout << "lajsdfh" << endl;
 	//Temperary song variable then pointer moved to next node
-	Song mySong = nodePtr -> s;
-//	nodePtr = nodePtr -> next;
+	Song mySong = findLowest();
+
+
+	int i = 0;
 
 	//While there are still songs in playlist
-	while(head != NULL)
+	while(nodePtr)
 	{
 		//Create and initialize a new song node
 		newNode = new songNode;
 		newNode -> s = findLowest();
 		newNode -> next = NULL;
 
-		nPtr = head;
 		previousNode = NULL;
 
+		//Remove the song from playlist
 		while(found != true)
 		{
 			//Check for empty list
@@ -254,8 +258,8 @@ void TsuPod::sortList()
 					found = true;
 				}
 			}
+			i++;
 		}	
-
 		if(temp == NULL)
 			temp = newNode;
 

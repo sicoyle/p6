@@ -69,9 +69,9 @@ int main()
 		cout << "Unsuccessful song addition - no empty slots: " << retCode << endl;
 
     	//Unsuccessful song addition - size is less than zero
-	Song mySong11("Formation", "Beyonce", 0);
-    	retCode = myPod.addSong(mySong11);
-		cout << "Unsuccessful song addition - size is less than zero: " << retCode << endl;
+//	Song mySong11("Formation", "Beyonce", 0);
+ //   	retCode = myPod.addSong(mySong11);
+//		cout << "Unsuccessful song addition - size is less than zero: " << retCode << endl;
 
 
 

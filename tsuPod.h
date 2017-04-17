@@ -37,4 +37,9 @@ class TsuPod
 		void clearList();
 		int getTotalMem();
 		int getRemainingMem();
+
+
+
+//DELETE
+void remove(Song);
 };
