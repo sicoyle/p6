@@ -204,74 +204,72 @@ Song TsuPod::findLowest()
 //Function to sort the playlist
 void TsuPod::sortList()
 {
-	songNode * nodePtr, * newNode, * temp, * nPtr, * previousNode, * tptr;
-	temp = NULL;
-	bool found = false;
-cout << "lajsdfh" << endl;
-	//Temperary song variable then pointer moved to next node
-	Song mySong = findLowest();
+	//Song objects to help sort songs in playlist
+	Song myTemp;
+	Song mySong1;
+	Song mySong2;
+	
+	//Pointers for traversal
+	songNode * nodePtr;
+	songNode * tptr;
 
+	//Initialize pointer
+	nodePtr = head;
 
+	//Variable to tell if swapped or not
+	bool swap = false;
+
+	//Counters for while loops
 	int i = 0;
+	int j = (i + 1);
 
-	//While there are still songs in playlist
-	while(nodePtr)
+	//While there are songs in playlist, sort playlist
+	while((i < csongs) && (nodePtr -> next != NULL) && (nodePtr != NULL))
 	{
-		//Create and initialize a new song node
-		newNode = new songNode;
-		newNode -> s = findLowest();
-		newNode -> next = NULL;
+		//Initialize song and pointer
+		mySong1 = nodePtr -> s;
+		tptr = nodePtr -> next;
 
-		previousNode = NULL;
-
-		//Remove the song from playlist
-		while(found != true)
+		while((j < (csongs + 1)) && (tptr != NULL))
 		{
-			//Check for empty list
-			if(head == NULL)
-				cout << "Error: empty list." << endl;
-	
-			//If head is the song
-			else if(head -> s == mySong)
-			{
-				nodePtr = head -> next;
-				delete head;
-				head = nodePtr;
-				found = true;
-			}	
-	
-			else
-			{
-				nodePtr = head;
+			//Initialize song object to next song
+			mySong2 = tptr -> s;
 			
-				//Traverse through playlist
-				while(nodePtr != NULL && nodePtr -> s != mySong)
-				{
-					previousNode = nodePtr;
-					nodePtr = nodePtr -> next;
-				}
-		
-				if(nodePtr != NULL)
-				{
-					previousNode -> next = nodePtr -> next;
-					delete nodePtr;
-					found = true;
-				}
-			}
-			i++;
-		}	
-		if(temp == NULL)
-			temp = newNode;
+			//Don's swap if same song or not necessary
+			if((mySong2 == mySong1) || (mySong2 > mySong1))
+				swap = false;
 
-		else
-		{
-			tptr = temp;
-			while(tptr -> next)
-				tptr = tptr -> next;
-			tptr -> next = newNode;
+			//Swap songs if less than
+			if(mySong2 < mySong1)
+			{
+				myTemp = mySong1;
+				mySong1 = mySong2;
+				mySong2 = myTemp;
+
+				tptr -> s = mySong2;
+
+				swap = true;
+			}
+			
+			//Traverse in list
+			tptr = tptr -> next;
+
+			//Increment counter
+			j++;
+			cout << "Inner" << endl;
 		}
+
+		nodePtr -> s = mySong1;
+		nodePtr = nodePtr -> next;
+
+		//Increment counter
+		i++;
+		cout << "Here : " << endl;
 	}
-	head = temp;
+
+
+
+
 }
 
 //Get the total memory of the tsuPod
