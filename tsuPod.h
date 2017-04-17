@@ -32,9 +32,9 @@ class TsuPod
 		int removeSong(Song);
 		void showList();
 		Song findLowest();
-		void sortList();
-		void shuffle();
-		void clearList();
+		int sortList();
+		int shuffle();
+		int clearList();
 		int getTotalMem();
 		int getRemainingMem();
 

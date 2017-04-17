@@ -99,5 +99,11 @@ int main()
 	myPod.showList();	
 
 
+	//Display cleared list
+	myPod.clearList();
+	cout << "Cleared list: " << endl;
+	myPod.showList();
+
+
 	return 0;
 }
