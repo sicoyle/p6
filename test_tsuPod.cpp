@@ -94,9 +94,16 @@ int main()
 
 	//Sort the playlist
 	myPod.sortList();
-
+		cout << "Playlist with songs sorted: " << endl;
 	//Display sorted playlist contents
 	myPod.showList();	
+
+	//Display shuffled playlist contents
+	myPod.shuffle();
+	cout << "Playlist with songs shuffled: " << endl;	
+	myPod.showList();
+	
+
 
 
 	//Display cleared list

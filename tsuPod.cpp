@@ -273,16 +273,68 @@ int TsuPod::sortList()
 
 }
 
+//Function to return a random number
+int TsuPod::randomNumber() 
+{
+	srand(time(0));
+	return (rand() % csongs);
+}
+
 //Function to shuffle the playlist
 int TsuPod::shuffle()
 {
-	songNode * myPrevious, * mySwap, * nodePtr, * tptr;
 
-	//Set up ability to get random numbers
-	srand(0);
+	//Variables for for loops
+	int i;
+	int index;
+
+	//Variable to hold song for swapping
+	Song temp;
+
+	//Varibale to hold random number
 	int num = -1;
 
-	
+	//Pointers to traverse and swap nodes
+	songNode * tptr;
+	songNode * mySwap;
+	songNode * myPrevious;
+
+	//Initialize pointer
+	songNode * nodePtr = head;
+
+	//Give error if list is empty
+	if(head == NULL)
+	{
+		cout << "Error: empty list." << endl;
+		return -2;
+	}
+
+	//Loop through number of consumed songs to shuffle them
+	for(i = 0; i < csongs; i++)
+	{		
+		//Get random number
+		num = randomNumber();
+
+		//Pointer initialization
+		tptr = head;
+		myPrevious = nodePtr;
+
+		for(index = 1; index <= num; index++)
+		{	
+			//Swap equals tptr pointer
+			if(index == num)
+				mySwap = tptr;
+
+			//Traverse in playlist
+			tptr = tptr->next;
+		}
+		
+		//Swap the songs
+		temp = myPrevious -> s;
+		myPrevious -> s = mySwap -> s;
+		mySwap -> s = temp;
+		nodePtr = nodePtr -> next;
+	}
 
 }
 

@@ -33,6 +33,7 @@ class TsuPod
 		void showList();
 		Song findLowest();
 		int sortList();
+		int randomNumber();
 		int shuffle();
 		int clearList();
 		int getTotalMem();
