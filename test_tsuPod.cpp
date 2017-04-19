@@ -81,6 +81,12 @@ int main()
     	retCode = myPod.addSong(mySong11);
 		cout << "Unsuccessful song addition - invalid size: " << retCode << endl;
 
+	//Add song with same title
+	Song mySong12("Mattress", "Fake", 7);
+	retCode = myPod.addSong(mySong12);
+		cout << "Add song return code: " << retCode << endl;
+
+
 	//Display playlist contents
 	cout << "Playlist with songs added:" << endl;
 	myPod.showList();

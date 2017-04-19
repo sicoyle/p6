@@ -73,15 +73,20 @@ bool Song::operator > (const Song & rs)
 
 	if(title > rs.title)
 		check = true;
+	
+	if(title == rs.title && artist > rs.artist)
+		check = true;
+
+	if(title == rs.title && artist == rs.artist && size > rs.size)
+		check = true;
 
 //	else if(!(artist <= rs.artist))
 //		return false;
 
 //	else if(!(size < rs.size))
 //		return false;
-	
-	else
-		return check;
+
+	return check;
 }
 
 //Operator to check for less than
@@ -91,6 +96,12 @@ bool Song::operator < (const Song & rs)
 
 	if(title < rs.title)
 		check = true;
+
+	if(title == rs.title && artist < rs.artist)
+		check = true;
+
+	if(title == rs.title && artist == rs.artist && size < rs.size)
+		check = true;
 		
 //	if(artist < rs.artist)
 //		check = true;
@@ -98,6 +109,6 @@ bool Song::operator < (const Song & rs)
 //	if(size >= rs.size)
 //		check = true;
 
-	else
-		return check;
+	
+	return check;
 }
