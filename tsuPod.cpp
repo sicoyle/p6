@@ -40,7 +40,7 @@ int TsuPod::checkAddSong(Song mySong)
 	}
 	
 	//Error if invalid size and not enough memory
-	else if((mySong.getSize() < 1) && (mySong.getSize() > getRemainingMem()))
+	if((mySong.getSize() < 1) || (mySong.getSize() > getRemainingMem()))
 	{
 		cout << "Error: size must be valid. ";
 		cout << "There also needs to be enough memory available" << endl;
@@ -143,7 +143,6 @@ int TsuPod::removeSong(Song mySong)
 		cmem = cmem - mySong.getSize();
 	}
 
-
 	return 0;
 }
 
@@ -211,10 +210,13 @@ int TsuPod::sortList()
 	//Initialize pointer
 	nodePtr = head;
 
+	//Loop through playlist
 	for(nodePtr = head; nodePtr -> next != NULL; nodePtr = nodePtr -> next)
 	{
+		//Traverse through list
 		tptr = nodePtr -> next;
 
+		//Check if songs need to be swapped
 		if(nodePtr -> s > tptr -> s)
 		{
 			Song temp = nodePtr -> s;
