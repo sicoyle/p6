@@ -29,59 +29,75 @@ Song::Song(string t, string a, int s)
 //Operator to check for unequal songs
 bool Song::operator != (const Song & rs)
 {
+	bool check = true;
+
 	if(title == rs.title)
-		return false;
+		check = false;
 
 	else if(artist == rs.artist)
-		return false;
+		check = false;
 
 	else if(size == rs.size)
-		return false;
+		check = false;
 
-	return true;
+	return check;
 }
 
 //Operator to check for equal songs
 bool Song::operator == (const Song & rs)
 {
-	if(title != rs.title)
-		return false;
+	bool check = false;
+	
+	if((title != rs.title) && (artist != rs.artist) && (size != rs.size))
+		check = false;
 
-	else if(artist != rs.artist)
-		return false;
+//	if(title != rs.title)
+//		return false;
 
-	else if(size != rs.size)
-		return false;
+//	else if(artist != rs.artist)
+//		return false;
 
-	return true;
+//	else if(size != rs.size)
+//		return false;
+
+	else
+		check = true;
+
+	return check;
 }
 
 //Operator to check for greater than
 bool Song::operator > (const Song & rs)
 {
-	if(!(title <= rs.title))
-		return false;
+	bool check = false;
 
-	else if(!(artist <= rs.artist))
-		return false;
+	if(title > rs.title)
+		check = true;
 
-	else if(!(size < rs.size))
-		return false;
+//	else if(!(artist <= rs.artist))
+//		return false;
 
-	return true;
+//	else if(!(size < rs.size))
+//		return false;
+	
+	else
+		return check;
 }
 
 //Operator to check for less than
 bool Song::operator < (const Song & rs)
 {
-	if(!(title >= rs.title))
-		return false;
+	bool check = false;
 
-	if(!(artist >= rs.artist))
-		return false;
+	if(title < rs.title)
+		check = true;
+		
+//	if(artist < rs.artist)
+//		check = true;
 
-	if(!(size >= rs.size))
-		return false;
+//	if(size >= rs.size)
+//		check = true;
 
-	return true;
+	else
+		return check;
 }
