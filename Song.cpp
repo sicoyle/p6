@@ -74,7 +74,8 @@ bool Song::operator < (const Song & rs)
 	if(title < rs.title)
 		check = true;
 
-	else
+	if(title == rs.title && artist < rs.artist)
+		
 		check = false;
 
 	return check;

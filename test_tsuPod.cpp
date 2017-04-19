@@ -94,11 +94,22 @@ int main()
 
 	//Sort the playlist
 	myPod.sortList();
+	myPod.sortList();
+	myPod.sortList();
+	myPod.sortList();
+	myPod.sortList();
+	myPod.sortList();
+	myPod.sortList();
+	myPod.sortList();
+	myPod.sortList();
 		cout << "Playlist with songs sorted: " << endl;
+
 	//Display sorted playlist contents
 	myPod.showList();	
 
 	//Display shuffled playlist contents
+	myPod.shuffle();
+	myPod.shuffle();
 	myPod.shuffle();
 	cout << "Playlist with songs shuffled: " << endl;	
 	myPod.showList();

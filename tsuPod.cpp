@@ -204,11 +204,6 @@ Song TsuPod::findLowest()
 //Function to sort the playlist
 int TsuPod::sortList()
 {
-	//Song objects to help sort songs in playlist
-	Song myTemp;
-	Song mySong1;
-	Song mySong2;
-	
 	//Pointers for traversal
 	songNode * nodePtr;
 	songNode * tptr;
@@ -216,61 +211,19 @@ int TsuPod::sortList()
 	//Initialize pointer
 	nodePtr = head;
 
-	//Variable to tell if swapped or not
-	bool swap = true;
-
-	//Counters for while loops
-	int i = 0;
-	int j = i;
-
-	//While there are songs in playlist, sort playlist
-	
-
-	while((i < csongs) && (nodePtr -> next != NULL) && (nodePtr != NULL))
+	for(nodePtr = head; nodePtr -> next != NULL; nodePtr = nodePtr -> next)
 	{
-		//Initialize song and pointer
-		mySong1 = nodePtr -> s;
 		tptr = nodePtr -> next;
 
-		while((j < csongs) && (tptr != NULL))
+		if(nodePtr -> s > tptr -> s)
 		{
-			//Initialize song object to next song
-			mySong2 = tptr -> s;
-			
-			//Don's swap if same song or not necessary
-			if((mySong2 == mySong1) || (mySong2 > mySong1))
-				swap = false;
-
-			//Swap songs if less than
-			if(mySong2 < mySong1)
-			{
-				myTemp = mySong1;
-				mySong1 = mySong2;
-				mySong2 = myTemp;
-
-				tptr -> s = mySong2;
-
-				swap = true;
-			}
-			//Traverse in list
-			tptr = tptr -> next;
-
-			//Increment counter
-			j++;
-			cout << "Inner" << endl;
+			Song temp = nodePtr -> s;
+			nodePtr -> s = tptr -> s;
+			tptr -> s = temp;
 		}
-
-		nodePtr -> s = mySong1;
-		nodePtr = nodePtr -> next;
-
-		//Increment counter
-		i++;
-
-		cout << "Here : " << endl;
 	}
 
 	return 0;
-
 }
 
 //Function to return a random number
@@ -359,9 +312,6 @@ int TsuPod::clearList()
 	return 0;
 
 }
-
-
-
 
 //Get the total memory of the tsuPod
 int TsuPod::getTotalMem() {return totMem;}
